@@ -1,5 +1,7 @@
 import React from 'react';
 import { StyleSheet, View, Text, Pressable} from "react-native";
+// https://reactnative.dev/docs/pressable#hitslop
+
 const DefaultButton = (props) => {
     return(
         <Pressable

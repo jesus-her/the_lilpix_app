@@ -39,6 +39,8 @@ const Test = ({navigation})=>{
             >
                 <Text style={{color: 'white'}}>GO TO THE FIRST SCREEN</Text>
             </TouchableOpacity>
+
+            <DefaultButton  onPress={()=> navigation.setOptions({title:'updated!'})} text={'change the title'}/>
         </View>
     )
 }

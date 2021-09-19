@@ -14,14 +14,21 @@ export default function App(){
             <Stack.Navigator
                 initialRouteName="Test"
                 screenOptions={{
-                    title: 'Test title',
+
                     headerStyle: styles.header,
                     headerHideShadow: true,
                     headerTopInsetEnabled: false,
                     stackAnimation: 'slide_from_right',
                 }}>
-                <Stack.Screen name='Gallery' component={Gallery}/>
-                <Stack.Screen name='Test' component={Test} />
+                <Stack.Screen
+                    name='Gallery'
+                    component={Gallery}
+                />
+                <Stack.Screen
+                    name='Test'
+                    component={Test}
+                    options={{title:'Test title from options'}}
+                />
             </Stack.Navigator>
         </NavigationContainer>
 

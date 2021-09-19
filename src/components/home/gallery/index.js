@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import ImageElement from "../imageElement";
-
+import { Ionicons } from '@expo/vector-icons';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { AntDesign } from '@expo/vector-icons';
+import { FontAwesome } from '@expo/vector-icons';
 import {
     StyleSheet,
     Text,
@@ -55,18 +58,18 @@ export default class Gallery extends React.Component {
                     onRequestClose={() => {}}
                 >
                     <View style={styles.modal}>
-                        <Text
-                            style={styles.close}
-                            onPress={() => {
-                                this.setModalVisible(false);
-                            }}
-                        >
-                            X
-                        </Text>
-<View style={styles.rgb}>
-                        <Image source={{uri: "https://i.imgur.com/EkNmLIb.png"}}
+
+
+
+                        <Ionicons name="close" style={styles.close}
+                                  onPress={() => {
+                                      this.setModalVisible(false);
+                                  }}/>
+                        <MaterialCommunityIcons name="download" style={styles.download} />
+                    <View style={styles.rgb}>
+                        <Image source={{uri: "https://i.imgur.com/AMQjgHY.png"}}
                         style={styles.image}/>
-</View>
+                    </View>
                     <Info/>
                     </View>
                 </Modal>
@@ -120,14 +123,29 @@ backgroundColor: "red",
     },
 
     close: {
-        color: "#fff",
+        color: "#000",
         fontSize: 30,
         fontWeight: "bold",
-        backgroundColor: "#003bff",
-        top: 2,
+        top: 5,
         left: 10,
         position: "absolute",
         zIndex: 10,
         textAlign: "center",
+        backgroundColor:"#fff",
+        borderRadius:50,
+        padding: 5,
+    },
+    download: {
+        color: "#000",
+        fontSize: 30,
+        fontWeight: "bold",
+        top: 5,
+        right: 10,
+        position: "absolute",
+        zIndex: 10,
+        textAlign: "center",
+        backgroundColor:"#fff",
+        borderRadius:50,
+        padding: 5,
     },
 });

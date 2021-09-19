@@ -1,41 +1,39 @@
+import 'react-native-gesture-handler'; // Not remove from here, it has to be at the top!
 import React from"react";
 import { StyleSheet,View,ScrollView } from"react-native";
-import Home from "./src/screens/home";
 import Gallery from "./src/components/home/gallery";
 
 
+// Navigation stuff
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { createDrawerNavigator } from '@react-navigation/drawer';
 
-const Stack = createNativeStackNavigator();
+const Drawer = createDrawerNavigator();
+
+const MyDrawer = ()=>{
+    return(
+        <Drawer.Navigator
+            initialRouteName="Gallery"
+
+        >
+            <Drawer.Screen
+                name='Gallery'
+                component={Gallery}
+                options={{
+                    headerShown: false
+                }}
+            />
+
+        </Drawer.Navigator>
+    );
+}
+
 export default function App(){
     return(
         <NavigationContainer>
-            <Stack.Navigator
-                initialRouteName="Gallery"
-                screenOptions={{
-
-                    headerStyle: styles.header,
-                    headerHideShadow: true,
-                    headerTopInsetEnabled: false,
-                    stackAnimation: 'slide_from_right',
-                }}>
-                <Stack.Screen
-                    name='Gallery'
-                    component={Gallery}
-                    options={{
-                        headerShown: false
-                    }}
-                />
-                <Stack.Screen
-                    name='Test'
-                    component={Gallery}
-                    options={{title:'Test title from options'}}
-                />
-            </Stack.Navigator>
+            <MyDrawer />
         </NavigationContainer>
-
-
     );
 }
 

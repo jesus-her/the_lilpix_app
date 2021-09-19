@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import ImageElement from "../imageElement";
+
 import {
     StyleSheet,
     Text,
@@ -62,8 +63,11 @@ export default class Gallery extends React.Component {
                         >
                             X
                         </Text>
-                        {/*<ImageElement imgsource={this.state.modalImage}/>*/}
-<Info/>
+<View style={styles.rgb}>
+                        <Image source={{uri: "https://i.imgur.com/EkNmLIb.png"}}
+                        style={styles.image}/>
+</View>
+                    <Info/>
                     </View>
                 </Modal>
                 {images}
@@ -85,7 +89,25 @@ const styles = StyleSheet.create({
         padding: 2,
         width: Dimensions.get("window").width / 3 - 5,
         height: Dimensions.get("window").height / 3 - 5,
-        backgroundColor: "#ff0000",
+        backgroundColor: "#1e943a",
+    },
+    rgb:{
+backgroundColor: "red",
+        width:"100%",
+        height: "100%",
+        position:"relative",
+        flex:1,
+        padding:8,
+    },
+
+    image: {
+        flex: 1,
+        width: "100%",
+        height: "100%",
+        alignSelf: "stretch",
+        position:"absolute",
+        margin:8,
+        opacity:1,
     },
     modal: {
         flex: 1,

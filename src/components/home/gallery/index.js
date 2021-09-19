@@ -1,19 +1,22 @@
-import React, { Component } from "react";
+import React from "react";
 import ImageElement from "../imageElement";
 import { Ionicons } from '@expo/vector-icons';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-import { AntDesign } from '@expo/vector-icons';
-import { FontAwesome } from '@expo/vector-icons';
+/*import { AntDesign } from '@expo/vector-icons';
+import { FontAwesome } from '@expo/vector-icons';*/
 import {
     StyleSheet,
-    Text,
     View,
     Image,
     Modal,
     Dimensions,
     TouchableWithoutFeedback,
+    ScrollView,
+    SafeAreaView
 } from "react-native";
 import Info from "../../modal/info";
+import {SafeAreaContext} from "react-native-safe-area-context";
+import Header from "../../header";
 
 
 export default class Gallery extends React.Component {
@@ -49,7 +52,11 @@ export default class Gallery extends React.Component {
         });
 
         return (
-            <View style={styles.container}>
+
+            <ScrollView>
+                <Header/>
+                <View style={styles.container}>
+
                 <Modal
                     style={styles.modal}
                     animationType={"fade"}
@@ -58,23 +65,22 @@ export default class Gallery extends React.Component {
                     onRequestClose={() => {}}
                 >
                     <View style={styles.modal}>
-
-
-
                         <Ionicons name="close" style={styles.close}
                                   onPress={() => {
                                       this.setModalVisible(false);
                                   }}/>
                         <MaterialCommunityIcons name="download" style={styles.download} />
-                    <View style={styles.rgb}>
-                        <Image source={{uri: "https://i.imgur.com/AMQjgHY.png"}}
+                        <View style={styles.rgb}>
+                            <Image source={{uri: "https://i.imgur.com/AMQjgHY.png"}}
                         style={styles.image}/>
-                    </View>
+                        </View>
                     <Info/>
                     </View>
                 </Modal>
                 {images}
             </View>
+            </ScrollView>
+
         );
     }
 }
@@ -84,18 +90,20 @@ const styles = StyleSheet.create({
         flex: 1,
         flexDirection: "row",
         flexWrap: "wrap",
-        backgroundColor: "#00ffd9",
+        backgroundColor: "#1d1d1d",
         justifyContent: "space-between",
+
+
     },
     imagewrap: {
         margin: 2,
         padding: 2,
         width: Dimensions.get("window").width / 3 - 5,
         height: Dimensions.get("window").height / 3 - 5,
-        backgroundColor: "#1e943a",
+
     },
     rgb:{
-backgroundColor: "red",
+        backgroundColor: "red",
         width:"100%",
         height: "100%",
         position:"relative",

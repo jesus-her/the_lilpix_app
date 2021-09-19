@@ -2,7 +2,7 @@ import React from"react";
 import { StyleSheet,View,ScrollView } from"react-native";
 import Home from "./src/screens/home";
 import Gallery from "./src/components/home/gallery";
-import Test from './src/screens/test/test'
+
 
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -12,7 +12,7 @@ export default function App(){
     return(
         <NavigationContainer>
             <Stack.Navigator
-                initialRouteName="Test"
+                initialRouteName="Gallery"
                 screenOptions={{
 
                     headerStyle: styles.header,
@@ -23,10 +23,13 @@ export default function App(){
                 <Stack.Screen
                     name='Gallery'
                     component={Gallery}
+                    options={{
+                        headerShown: false
+                    }}
                 />
                 <Stack.Screen
                     name='Test'
-                    component={Test}
+                    component={Gallery}
                     options={{title:'Test title from options'}}
                 />
             </Stack.Navigator>

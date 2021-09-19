@@ -3,7 +3,6 @@ import Gallery from "../../components/home/gallery";
 import {
     StyleSheet,
     View,
-    ScrollView
 } from "react-native";
 
 export default class Home extends React.Component {

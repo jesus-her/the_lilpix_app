@@ -19,18 +19,37 @@ import Info from "../../modal/info";
 export default class Gallery extends React.Component {
     state = {
         modalVisible: false,
-        modalImage: "https://i.imgur.com/hMQ5qR3.png",
+        modalImage: "",
+        urlModalImage: "",
         images: require ("../../../../data.json"),
     };
 
-    setModalVisible(visible, imageKey) {
-        this.setState({ modalImage: this.state.images[imageKey] });
-        this.setState({ modalVisible: visible });
+    setModalVisible = async (visible, imageKey)=> {
+        try {
+            this.setState({ modalImage: this.state.images[imageKey] });
+
+            console.log(this.state.modalImage)
+            this.setState({ modalVisible: visible });
+        }catch (error){
+            console.log(error);
+        }
     }
 
     getImage() {
         return this.state.modalImage;
     }
+
+    // getMoviesFromApiAsync = async () => {
+    //     try {
+    //         const response = await fetch(
+    //             'https://reactnative.dev/movies.json'
+    //         );
+    //         const json = await response.json();
+    //         return json.movies;
+    //     } catch (error) {
+    //         console.error(error);
+    //     }
+    // };
 
     render() {
         let images = this.state.images.map((val, key) => {
@@ -58,21 +77,25 @@ export default class Gallery extends React.Component {
                     onRequestClose={() => {}}
                 >
                     <View style={styles.modal}>
-
-
-
-                        <Ionicons name="close" style={styles.close}
-                                  onPress={() => {
-                                      this.setModalVisible(false);
-                                  }}/>
-                        <MaterialCommunityIcons name="download" style={styles.download} />
-                    <View style={styles.rgb}>
-                        <Image source={{uri: "https://i.imgur.com/AMQjgHY.png"}}
-                        style={styles.image}/>
-                    </View>
-                    <Info/>
+                        <Ionicons
+                            name="close"
+                            style={styles.close}
+                            onPress={() => {this.setModalVisible(false)}}
+                        />
+                        <MaterialCommunityIcons
+                            name="download"
+                            style={styles.download}
+                        />
+                        <View style={styles.rgb}>
+                            <Image
+                                source={{uri: "https://i.imgur.com/AMQjgHY.png"}}
+                                style={styles.image}
+                            />
+                        </View>
+                        <Info/>
                     </View>
                 </Modal>
+
                 {images}
             </View>
         );

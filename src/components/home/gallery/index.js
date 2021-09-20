@@ -4,6 +4,8 @@ import { Ionicons } from '@expo/vector-icons';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
 import { FontAwesome } from '@expo/vector-icons';
+import weeks from '../../../../data.json';
+
 import {
     StyleSheet,
     Text,
@@ -22,34 +24,20 @@ export default class Gallery extends React.Component {
         modalImage: "",
         urlModalImage: "",
         images: require ("../../../../data.json"),
+        currentImage: ,
     };
 
     setModalVisible = async (visible, imageKey)=> {
         try {
             this.setState({ modalImage: this.state.images[imageKey] });
 
-            console.log(this.state.modalImage)
+            console.log(this.state.images[0].posts)
             this.setState({ modalVisible: visible });
         }catch (error){
             console.log(error);
         }
     }
 
-    getImage() {
-        return this.state.modalImage;
-    }
-
-    // getMoviesFromApiAsync = async () => {
-    //     try {
-    //         const response = await fetch(
-    //             'https://reactnative.dev/movies.json'
-    //         );
-    //         const json = await response.json();
-    //         return json.movies;
-    //     } catch (error) {
-    //         console.error(error);
-    //     }
-    // };
 
     render() {
         let images = this.state.images.map((val, key) => {
@@ -61,7 +49,7 @@ export default class Gallery extends React.Component {
                     }}
                 >
                     <View style={styles.imagewrap}>
-                        <ImageElement  imgsource={val.url}/>
+                        <ImageElement  imgsource={this.state.images[key].posts[]}/>
                     </View>
                 </TouchableWithoutFeedback>
             );

@@ -2,6 +2,7 @@ import 'react-native-gesture-handler'; // Not remove from here, it has to be at 
 import React from"react";
 import { StyleSheet,View,ScrollView } from"react-native";
 import Gallery from "./src/components/home/gallery";
+import Info from "./src/components/modal/info/index";
 
 
 // Navigation stuff
@@ -15,7 +16,6 @@ const MyDrawer = ()=>{
     return(
         <Drawer.Navigator
             initialRouteName="Gallery"
-
         >
             <Drawer.Screen
                 name='Gallery'
@@ -23,6 +23,10 @@ const MyDrawer = ()=>{
                 options={{
                     headerShown: false
                 }}
+            />
+            <Drawer.Screen
+                name='perro'
+                component={Info}
             />
 
         </Drawer.Navigator>
@@ -33,6 +37,7 @@ export default function App(){
     return(
         <NavigationContainer>
             <MyDrawer />
+
         </NavigationContainer>
     );
 }

@@ -1,58 +1,114 @@
 import React from "react";
-import { StyleSheet, Text, View, } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
+import { scale, verticalScale, moderateScale } from 'react-native-size-matters';
+import { ScaledSheet } from 'react-native-size-matters';
+import TextTicker from 'react-native-text-ticker'
+import Icon from "./Icon";
+const Info = (props) => {
 
-
-export default class Info extends React.Component {
-    render() {
         return (
             <>
-                <View style={styles.infocontainer}>
+                <View style={styles.infoContainer}>
+                    <View style={styles.info} >
+                        <Text style={styles.mtf}> LILPIX MON-TO-FRI</Text>
+                        {props.title.length <15 ? (
+                        <Text style={styles.titleBig}>{props.title}</Text>
+                        ) : (
+                            <TextTicker
+                                duration={5000}
+                                loop
+                                bounce={false}
+                                shouldAnimateTreshold={40}
+                                repeatSpacer={150}
+                                marqueeDelay={500}
+                                style={styles.title}
+                            >
+                                {props.title}
+                            </TextTicker>
+                        )}
 
-                            <View style={styles.info} >
-                                <Text> LILPIX MON-TO-FRI</Text>
-                                <Text> TITLE </Text>
-                                <Text style={styles.bla}>DESC</Text>
-                            </View>
-                            <View style={styles.stamp}>
-                                <Text>DATE</Text>
-                                <Text>(authentication seal)</Text>
-                                <Text>Size</Text>
-                            </View>
+                        <Text style={styles.properties}>
+                                    ORIGINAL RESOLUTION: {props.width} x {props.height} px{"\n"}
+                                    TOOLS USED: Blender, Photoshop {"\n"}
+                                    FILE SIZE: {props.size} Bytes
+                        </Text>
+                    </View>
+                    <View style={styles.stamp}>
+                        <Text style={styles.week}>WEEK #{props.week}</Text>
+                        <Text style={styles.date}>{props.date}</Text>
 
+                     <Icon/>
+
+                    </View>
                 </View>
             </>
         );
-    }
 }
 
-const styles = StyleSheet.create({
-    infocontainer: {
-        width: "100%",
+const styles = ScaledSheet.create({
+    infoContainer: {
+        width: "80%",
         height: "25%",
         maxHeight: "25%",
         flex: 1,
         flexDirection: "row",
         flexWrap: "wrap",
-        backgroundColor: "#ffffff",
-        justifyContent: "space-between",
-        padding: 10,
+        backgroundColor: "#000000",
+        justifyContent: "center",
+        alignItems: "flex-end",
+        padding: "5@s",
     },
     info: {
-        width: 225,
+        width: "70%",
         height: "100%",
-        justifyContent: "space-between",
-        alignItems: "center",
-        backgroundColor: "rgb(114,114,114)",
+        justifyContent: "flex-start",
+        backgroundColor: "#000",
+        padding:"4@s",
     },
-    bla: {
+    mtf:{
+      fontSize: "15@s",
+        color: "#fff"
+    },
+    titleBig:{
+        fontSize:"31@s",
+        fontWeight:"bold",
+        textAlign: "left",
+        color: "#fff"
+    },
+    title:{
+        fontSize:"45@s",
+        fontWeight:"bold",
+        textAlign: "left",
+        color: "#fff"
+    },
+    description: {
         textAlign: "justify",
+        fontSize: "12@s",
+        fontWeight:"bold",
+        color: "#fff"
+    },
+    properties: {
+        fontSize: "10@s",
+        color: "#D0D0D0",
     },
     stamp: {
-        width: 100,
+        width: "30%",
         height: "100%",
-        backgroundColor: "rgb(134,134,134)",
-        justifyContent: "space-around",
+        backgroundColor: "#000",
+        justifyContent: "center",
         alignItems: "center",
-        textAlign: "justify",
+        textAlign: "center",
+        padding:"5@s",
+    },
+    date:{
+        fontSize:"12@s",
+        fontWeight:"bold",
+        color: "#fff"
+    },
+    week:{
+        fontSize:"13@s",
+        fontWeight:"bold",
+        color: "#fff"
     },
 });
+export default Info

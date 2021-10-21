@@ -1,4 +1,4 @@
-import { Modal,StyleSheet, } from"react-native";
+import {Image, Modal, StyleSheet, View,} from "react-native";
 import Info from"./info";
 import React from"react";
 
@@ -26,6 +26,7 @@ export default class ModalElement extends React.Component{
                         }}>
                             X
                         </Text>
+                       
                         <Info/>
                     </View>
                 </Modal>
@@ -43,6 +44,7 @@ const styles = StyleSheet.create({
         height:"100%",
         paddingHorizontal:0,
     },
+
 
     close:{
         color:"#fff",

@@ -1,95 +1,114 @@
 import React from "react";
-import {Image, StyleSheet, Text, View,} from "react-native";
+import { StyleSheet, Text, View } from "react-native";
+import { scale, verticalScale, moderateScale } from 'react-native-size-matters';
+import { ScaledSheet } from 'react-native-size-matters';
+import TextTicker from 'react-native-text-ticker'
+import Icon from "./Icon";
+const Info = (props) => {
 
-
-export default class Info extends React.Component {
-    render() {
         return (
             <>
-                <View style={styles.infocontainer}>
+                <View style={styles.infoContainer}>
+                    <View style={styles.info} >
+                        <Text style={styles.mtf}> LILPIX MON-TO-FRI</Text>
+                        {props.title.length <15 ? (
+                        <Text style={styles.titleBig}>{props.title}</Text>
+                        ) : (
+                            <TextTicker
+                                duration={5000}
+                                loop
+                                bounce={false}
+                                shouldAnimateTreshold={40}
+                                repeatSpacer={150}
+                                marqueeDelay={500}
+                                style={styles.title}
+                            >
+                                {props.title}
+                            </TextTicker>
+                        )}
 
-                            <View style={styles.info} >
-                                <Text style={styles.mtf}> LILPIX MON-TO-FRI</Text>
-                                <Text style={styles.title}>ROTTEN EGG 🥚  </Text>
-                                <Text style={styles.description}>Description of picture
-                                 and bla, bla, bla, bla, bla, bla, bla, bla, bla,
-                                    bla, bla, bla {"\n"}</Text>
-                                <Text style={styles.properties}>
-                                    ORIGINAL RESOLUTION: "2400 X 3000" px{"\n"}
-                                    TOOLS USED: "Blender, Photoshop" {"\n"}
-                                    FILE SIZE: "5.4" MB
-                                </Text>
-                            </View>
-                            <View style={styles.stamp}>
-                                <Text style={styles.date}>WEEK #9</Text>
-                                <Text> date</Text>
-                               <Image source={{uri: "https://i.imgur.com/xxgfPHJ.png"}}
-                                      style={styles.seal}/>
-                            </View>
+                        <Text style={styles.properties}>
+                                    ORIGINAL RESOLUTION: {props.width} x {props.height} px{"\n"}
+                                    TOOLS USED: Blender, Photoshop {"\n"}
+                                    FILE SIZE: {props.size} Bytes
+                        </Text>
+                    </View>
+                    <View style={styles.stamp}>
+                        <Text style={styles.week}>WEEK #{props.week}</Text>
+                        <Text style={styles.date}>{props.date}</Text>
 
+                     <Icon/>
+
+                    </View>
                 </View>
             </>
         );
-    }
 }
 
-const styles = StyleSheet.create({
-    infocontainer: {
-        width: "100%",
+const styles = ScaledSheet.create({
+    infoContainer: {
+        width: "80%",
         height: "25%",
         maxHeight: "25%",
         flex: 1,
         flexDirection: "row",
         flexWrap: "wrap",
-        backgroundColor: "#ffffff",
-        justifyContent: "space-between",
-        padding: 10,
+        backgroundColor: "#000000",
+        justifyContent: "center",
+        alignItems: "flex-end",
+        padding: "5@s",
     },
     info: {
-        width: 250,
+        width: "70%",
         height: "100%",
         justifyContent: "flex-start",
-        backgroundColor: "rgba(114,114,114,0.27)",
-        padding:5,
-
+        backgroundColor: "#000",
+        padding:"4@s",
     },
     mtf:{
-      fontSize: 15,
-       fontWeight:"bold",
+      fontSize: "15@s",
+        color: "#fff"
     },
-    title:{
-        fontSize:30,
+    titleBig:{
+        fontSize:"31@s",
         fontWeight:"bold",
         textAlign: "left",
-
+        color: "#fff"
+    },
+    title:{
+        fontSize:"45@s",
+        fontWeight:"bold",
+        textAlign: "left",
+        color: "#fff"
     },
     description: {
         textAlign: "justify",
-        fontSize: 12,
+        fontSize: "12@s",
         fontWeight:"bold",
+        color: "#fff"
     },
-    properties:{
-        fontSize:9,
+    properties: {
+        fontSize: "10@s",
+        color: "#D0D0D0",
     },
     stamp: {
-        width: 115,
+        width: "30%",
         height: "100%",
-        backgroundColor: "rgba(114,114,114,0.27)",
-        justifyContent: "space-between",
+        backgroundColor: "#000",
+        justifyContent: "center",
         alignItems: "center",
-        textAlign: "justify",
-        padding:5,
+        textAlign: "center",
+        padding:"5@s",
     },
     date:{
-        fontSize:20,
+        fontSize:"12@s",
         fontWeight:"bold",
+        color: "#fff"
     },
-    seal:{
-        width:80,
-        height:80,
-    },
-    size:{
-        fontSize:10,
+    week:{
+        fontSize:"13@s",
         fontWeight:"bold",
+        color: "#fff"
     },
 });
+export default Info

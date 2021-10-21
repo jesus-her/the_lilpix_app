@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import ImageElement from "../imageElement";
 import { Ionicons } from '@expo/vector-icons';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
@@ -12,14 +12,18 @@ import {
     Dimensions,
     TouchableWithoutFeedback,
     ScrollView,
-    SafeAreaView
+    SafeAreaView,
+    FlatList
 } from "react-native";
 import Info from "../../modal/info";
-import {SafeAreaContext} from "react-native-safe-area-context";
+import ImageList from "../../home/imageList/index"
 import Header from "../../header";
+import {weeks} from "../../../../data"
+import {Animated} from "react-native-web";
 
 
 export default class Gallery extends React.Component {
+
     state = {
         modalVisible: false,
         modalImage: "https://i.imgur.com/hMQ5qR3.png",
@@ -54,6 +58,7 @@ export default class Gallery extends React.Component {
         return (
 
             <ScrollView>
+
                 <Header/>
                 <View style={styles.container}>
 
@@ -63,6 +68,7 @@ export default class Gallery extends React.Component {
                     transparent={true}
                     visible={this.state.modalVisible}
                     onRequestClose={() => {}}
+
                 >
                     <View style={styles.modal}>
                         <Ionicons name="close" style={styles.close}
@@ -70,15 +76,43 @@ export default class Gallery extends React.Component {
                                       this.setModalVisible(false);
                                   }}/>
                         <MaterialCommunityIcons name="download" style={styles.download} />
-                        <View style={styles.rgb}>
-                            <Image source={{uri: "https://i.imgur.com/AMQjgHY.png"}}
-                        style={styles.image}/>
+                        <View style={StyleSheet.absoluteFillObject}>
+                            {data.map((item) => {
+
+                                return(
+
+                                <Image
+                                    key={item.id}
+                                    source={{uri: item.url}}
+                                    style={StyleSheet.absoluteFillObject}
+                                    blurRadius={50}
+                                />
+                                )
+                            })}
                         </View>
+
+                        <View style={styles.rgb} >
+
+                            {data.map((item) => {
+
+                                return(
+
+                                    <Image
+                                        key={item.id}
+                                        source={{uri: item.url}}
+                                        style={styles.image}
+                                    />
+                                )
+                            })}
+                        </View>
+
                     <Info/>
                     </View>
                 </Modal>
-                {images}
+                    {images}
+
             </View>
+
             </ScrollView>
 
         );
@@ -103,12 +137,12 @@ const styles = StyleSheet.create({
 
     },
     rgb:{
-        backgroundColor: "red",
+
         width:"100%",
         height: "100%",
         position:"relative",
         flex:1,
-        padding:8,
+        padding:15,
     },
 
     image: {
@@ -117,8 +151,11 @@ const styles = StyleSheet.create({
         height: "100%",
         alignSelf: "stretch",
         position:"absolute",
-        margin:8,
+        margin:15,
         opacity:1,
+        borderWidth: 4,
+        borderColor: "#20232a",
+        borderRadius: 10,
     },
     modal: {
         flex: 1,

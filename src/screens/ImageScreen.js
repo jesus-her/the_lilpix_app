@@ -1,6 +1,7 @@
 import React from "react";
 import { Image, ImageBackground, StyleSheet, View, TouchableOpacity, TouchableWithoutFeedback} from "react-native";
 import Info from "../components/modal/info";
+import { ScaledSheet } from 'react-native-size-matters';
 import * as FileSystem from "expo-file-system";
 import * as MediaLibrary from "expo-media-library";
 import {MaterialCommunityIcons} from "@expo/vector-icons";
@@ -42,18 +43,18 @@ const ImageScreen = ({route}) => {
     return(
         <>
 
-        <ImageBackground source={{uri: image.image.url}} style={styles.imageBackground} resizeMode="cover" blurRadius={25}>
-            <TouchableWithoutFeedback
+       <View style={styles.container}>
+            {/*<TouchableWithoutFeedback
                 style={styles.imageBehindWrap}
                 onLongPress={() => {
                     console.log("hi");
-                }} >
+                }} >*/}
                 <Image
                      source={{uri: image.image.url}}
                     style={styles.imageModal}
                  />
 
-            </TouchableWithoutFeedback>
+           {/* </TouchableWithoutFeedback>*/}
 
             <Info
                 week=""
@@ -76,55 +77,55 @@ const ImageScreen = ({route}) => {
                 <SetWallpaper wallpaper={image.image.url}/>
 
             </View>
+       </View>
+            <ImageBackground source={{uri: image.image.url}} style={styles.imageBackground} resizeMode="cover" blurRadius={25}>
+            </ImageBackground>
 
-        </ImageBackground>
         </>
     )
 }
-const styles = StyleSheet.create({
+const styles = ScaledSheet.create({
 
+container:{
+  backgroundColor: "#dc0404",
+    flex: 1,
+    marginLeft: "20@s",
+    marginRight: "20@s",
+    },
     imageBackground:{
         width:"100%",
         height: "100%",
-        position:"relative",
-        flex:1,
+        alignItems: "stretch",
         justifyContent: "center",
-        alignItems:"center",
-        backgroundColor: "#000"
+        position: "absolute",
+        flex:1,
+        zIndex: -11,
     },
-
     imageModal: {
-        flex: 1,
-        width: "80%",
-        height: "100%",
-        position: "relative",
-        alignSelf:"center",
-        opacity:1,
-    },
-    imageBehindWrap:{
-        flex: 1,
+        flex: "1@s",
         width: "100%",
-        alignSelf:"center",
-        justifyContent:"center",
     },
+   /* imageBehindWrap:{
+
+    },*/
     iconsContainer: {
-        width:"80%",
+        width:"100%",
         flexDirection:"row",
         justifyContent: "space-around",
         alignItems: "center",
         backgroundColor:"#000",
-        padding: 3,
+        padding: "3@s",
         borderTopColor: "#FF0B56",
-        borderTopWidth: 3
+        borderTopWidth: "3@s"
     },
     icons: {
         width: "100%",
         color: "#fff",
-        fontSize: 30,
+        fontSize: "25@s",
         fontWeight: "bold",
         textAlign: "center",
         backgroundColor:"rgba(0,0,0,0)",
-        padding: 3,
+        padding: "3@s",
     },
 });
 

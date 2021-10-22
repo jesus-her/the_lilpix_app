@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import { StyleSheet, Animated, TouchableOpacity, Easing} from "react-native";
 import seal from "../../../../assets/logo/adaptive-icon_NO_background.png"
+import {ScaledSheet} from "react-native-size-matters";
 
 export default  class Icon extends Component{
 
@@ -15,7 +16,7 @@ export default  class Icon extends Component{
         Animated.sequence([
             Animated.timing(this.state.rotateValue, {
                 toValue: 100,
-                duration: 5000,
+                duration: 3500,
                 easing: Easing.linear,
                 useNativeDriver: true
             }),
@@ -25,7 +26,7 @@ export default  class Icon extends Component{
                 useNativeDriver: true
             })
         ]).start(() => {
-            /*this._rotateAnimation();*/ //rotate indefinitely
+            /*this._rotateAnimation();*/ /*rotate indefinitely*/
         })
     }
 
@@ -53,27 +54,22 @@ export default  class Icon extends Component{
 }
 }
 
-const styles = StyleSheet.create({
+const styles = ScaledSheet.create({
     sealContainer:{
-        width:"90%",
+        width:"100%",
         height:"70%",
-        backgroundColor: "#000000",
+        backgroundColor: "#000",
         alignItems: "center",
         justifyContent: "center",
-        margin: 5,
-
+        margin: "5@s",
         position: "relative",
-        borderRadius: 50
 
     },
 
     animationView: {
-        width: 90,
-        height: "100%",
-        borderRadius: 50,
+        width:"100%",
+        height:"100%",
         position: "absolute",
-
-
         backgroundColor: "rgba(255,204,0,0)",
     }
 });

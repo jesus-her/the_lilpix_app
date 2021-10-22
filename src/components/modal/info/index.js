@@ -27,11 +27,13 @@ const Info = (props) => {
                             </TextTicker>
                         )}
 
+                        <View style={ styles.propertiesContainer}>
                         <Text style={styles.properties}>
                                     ORIGINAL RESOLUTION: {props.width} x {props.height} px{"\n"}
                                     TOOLS USED: Blender, Photoshop {"\n"}
                                     FILE SIZE: {props.size} Bytes
                         </Text>
+                        </View>
                     </View>
                     <View style={styles.stamp}>
                         <Text style={styles.week}>WEEK #{props.week}</Text>
@@ -47,21 +49,20 @@ const Info = (props) => {
 
 const styles = ScaledSheet.create({
     infoContainer: {
-        width: "80%",
-        height: "25%",
+        width: "100%",
         maxHeight: "25%",
         flex: 1,
         flexDirection: "row",
         flexWrap: "wrap",
         backgroundColor: "#000000",
         justifyContent: "center",
-        alignItems: "flex-end",
+        alignItems: "center",
         padding: "5@s",
     },
     info: {
         width: "70%",
         height: "100%",
-        justifyContent: "flex-start",
+        justifyContent: "space-between",
         backgroundColor: "#000",
         padding:"4@s",
     },
@@ -70,13 +71,13 @@ const styles = ScaledSheet.create({
         color: "#fff"
     },
     titleBig:{
-        fontSize:"31@s",
+        fontSize:"25@s",
         fontWeight:"bold",
         textAlign: "left",
         color: "#fff"
     },
     title:{
-        fontSize:"45@s",
+        fontSize:"35@s",
         fontWeight:"bold",
         textAlign: "left",
         color: "#fff"
@@ -86,6 +87,10 @@ const styles = ScaledSheet.create({
         fontSize: "12@s",
         fontWeight:"bold",
         color: "#fff"
+    },
+    propertiesContainer: {
+        backgroundColor:"#000",
+        alignSelf: "flex-start",
     },
     properties: {
         fontSize: "10@s",

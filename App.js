@@ -31,6 +31,7 @@ export default function App(){
                 name="ImageScreen"
                 component={ImageScreen}
                 options={{
+                    backgroundColor: "#003bff",
                     title: "",
                     headerTintColor: "#fff",
                     headerStyle: {backgroundColor: "#000",}

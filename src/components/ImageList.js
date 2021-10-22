@@ -10,6 +10,7 @@ const ImageList = ({photos}) => {
 
         <View style={styles.imageContainer}>
             <FlatList
+              
                 data={photos}
                 renderItem= {renderItem}
                 keyExtractor={(item) => item.id}

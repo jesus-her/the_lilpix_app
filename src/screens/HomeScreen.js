@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from "react";
 import {View, StyleSheet} from "react-native";
 import {getImages} from "../api/strapi";
-import {db} from "../../data";
 import ImageList from "../components/ImageList";
 
 const HomeScreen = () => {
@@ -21,7 +20,7 @@ const HomeScreen = () => {
     return(
         <>
         <View style={styles.container}>
-            <ImageList photos={photos} />
+            <ImageList photos={photos.reverse()} />
         </View>
         </>
     )
